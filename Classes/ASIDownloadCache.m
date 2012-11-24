@@ -168,13 +168,7 @@ static NSString *permanentCacheFolder = @"PermanentStore";
 	}
 
 	// Store the response code in a custom header so we can reuse it later
-
-	// We'll change 304/Not Modified to 200/OK because this is likely to be us updating the cached headers with a conditional GET
-	int statusCode = [request responseStatusCode];
-	if (statusCode == 304) {
-		statusCode = 200;
-	}
-	[responseHeaders setObject:[NSNumber numberWithInt:[request responseStatusCode]] forKey:@"X-ASIHTTPRequest-Response-Status-Code"];
+    [responseHeaders setObject:[NSNumber numberWithInt:[request responseStatusCode]] forKey:@"X-ASIHTTPRequest-Response-Status-Code"];
 
 	[responseHeaders writeToFile:headerPath atomically:NO];
 

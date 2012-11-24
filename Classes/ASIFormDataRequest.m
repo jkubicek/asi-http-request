@@ -30,9 +30,13 @@
 #pragma mark utilities
 - (NSString*)encodeURL:(NSString *)string
 {
-	NSString *newString = (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)string, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), CFStringConvertNSStringEncodingToEncoding([self stringEncoding]));
-	if (newString) {
-		return newString;
+    CFStringRef newString = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)string, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), CFStringConvertNSStringEncodingToEncoding([self stringEncoding]));
+
+    NSString *returnString = [NSString stringWithString:(NSString *)newString];
+    CFRelease(newString);
+    
+	if (returnString) {
+		return returnString;
 	}
 	return @"";
 }
