@@ -14,7 +14,7 @@
 
 #if TARGET_OS_IPHONE
 #import "Reachability.h"
-#import "ASIAuthenticationDialog.h"
+//#import "ASIAuthenticationDialog.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #else
 #import <SystemConfiguration/SystemConfiguration.h>
@@ -842,20 +842,20 @@ static NSOperationQueue *sharedQueue = nil;
 		[[self cancelledLock] lock];
 		
 		#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-		if ([ASIHTTPRequest isMultitaskingSupported] && [self shouldContinueWhenAppEntersBackground]) {
-			backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-				// Synchronize the cleanup call on the main thread in case
-				// the task actually finishes at around the same time.
-				dispatch_async(dispatch_get_main_queue(), ^{
-					if (backgroundTask != UIBackgroundTaskInvalid)
-					{
-						[[UIApplication sharedApplication] endBackgroundTask:backgroundTask];
-						backgroundTask = UIBackgroundTaskInvalid;
-						[self cancel];
-					}
-				});
-			}];
-		}
+//		if ([ASIHTTPRequest isMultitaskingSupported] && [self shouldContinueWhenAppEntersBackground]) {
+//////			backgroundTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+////				// Synchronize the cleanup call on the main thread in case
+////				// the task actually finishes at around the same time.
+////				dispatch_async(dispatch_get_main_queue(), ^{
+//////					if (backgroundTask != UIBackgroundTaskInvalid)
+//////					{
+//////						[[UIApplication sharedApplication] endBackgroundTask:backgroundTask];
+//////						backgroundTask = UIBackgroundTaskInvalid;
+////						[self cancel];
+//////					}
+//				});
+//			}];
+//		}
 		#endif
 
 
@@ -2613,10 +2613,10 @@ static NSOperationQueue *sharedQueue = nil;
 {
 // Mac authentication dialog coming soon!
 #if TARGET_OS_IPHONE
-	if ([self shouldPresentProxyAuthenticationDialog]) {
-		[ASIAuthenticationDialog performSelectorOnMainThread:@selector(presentAuthenticationDialogForRequest:) withObject:self waitUntilDone:[NSThread isMainThread]];
-		return YES;
-	}
+//	if ([self shouldPresentProxyAuthenticationDialog]) {
+//		[ASIAuthenticationDialog performSelectorOnMainThread:@selector(presentAuthenticationDialogForRequest:) withObject:self waitUntilDone:[NSThread isMainThread]];
+//		return YES;
+//	}
 	return NO;
 #else
 	return NO;
@@ -2877,10 +2877,10 @@ static NSOperationQueue *sharedQueue = nil;
 {
 // Mac authentication dialog coming soon!
 #if TARGET_OS_IPHONE
-	if ([self shouldPresentAuthenticationDialog]) {
-		[ASIAuthenticationDialog performSelectorOnMainThread:@selector(presentAuthenticationDialogForRequest:) withObject:self waitUntilDone:[NSThread isMainThread]];
-		return YES;
-	}
+//	if ([self shouldPresentAuthenticationDialog]) {
+//		[ASIAuthenticationDialog performSelectorOnMainThread:@selector(presentAuthenticationDialogForRequest:) withObject:self waitUntilDone:[NSThread isMainThread]];
+//		return YES;
+//	}
 	return NO;
 #else
 	return NO;
@@ -3513,14 +3513,14 @@ static NSOperationQueue *sharedQueue = nil;
 	CFRunLoopStop(CFRunLoopGetCurrent());
 
 	#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-	if ([ASIHTTPRequest isMultitaskingSupported] && [self shouldContinueWhenAppEntersBackground]) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			if (backgroundTask != UIBackgroundTaskInvalid) {
-				[[UIApplication sharedApplication] endBackgroundTask:backgroundTask];
-				backgroundTask = UIBackgroundTaskInvalid;
-			}
-		});
-	}
+//	if ([ASIHTTPRequest isMultitaskingSupported] && [self shouldContinueWhenAppEntersBackground]) {
+//		dispatch_async(dispatch_get_main_queue(), ^{
+//			if (backgroundTask != UIBackgroundTaskInvalid) {
+//				[[UIApplication sharedApplication] endBackgroundTask:backgroundTask];
+//				backgroundTask = UIBackgroundTaskInvalid;
+//			}
+//		});
+//	}
 	#endif
 	CFRelease(self);
 }
@@ -4679,14 +4679,14 @@ static NSOperationQueue *sharedQueue = nil;
 + (void)showNetworkActivityIndicator
 {
 #if TARGET_OS_IPHONE
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+//	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 #endif
 }
 
 + (void)hideNetworkActivityIndicator
 {
 #if TARGET_OS_IPHONE
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];	
+//	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];	
 #endif
 }
 

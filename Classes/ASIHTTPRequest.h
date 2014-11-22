@@ -463,8 +463,8 @@ typedef void (^ASIDataBlock)(NSData *data);
 	NSTimeInterval secondsToCache;
 
 	#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
-	BOOL shouldContinueWhenAppEntersBackground;
-	UIBackgroundTaskIdentifier backgroundTask;
+//	BOOL shouldContinueWhenAppEntersBackground;
+//	UIBackgroundTaskIdentifier backgroundTask;
 	#endif
 	
 	// When downloading a gzipped response, the request will use this helper object to inflate the response
