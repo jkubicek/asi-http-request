@@ -3516,12 +3516,12 @@ static NSOperationQueue *sharedQueue = nil;
 
 	#if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
 	if ([ASIHTTPRequest isMultitaskingSupported] && [self shouldContinueWhenAppEntersBackground]) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			if (backgroundTask != UIBackgroundTaskInvalid) {
-//				[[UIApplication sharedApplication] endBackgroundTask:backgroundTask];
-				backgroundTask = UIBackgroundTaskInvalid;
-			}
-		});
+//		dispatch_async(dispatch_get_main_queue(), ^{
+//			if (backgroundTask != UIBackgroundTaskInvalid) {
+////				[[UIApplication sharedApplication] endBackgroundTask:backgroundTask];
+//				backgroundTask = UIBackgroundTaskInvalid;
+//			}
+//		});
 	}
 	#endif
 	CFRelease(self);
